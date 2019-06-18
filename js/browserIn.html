@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>Browser In</title>
+  </head>
+
+  <body>
+    <h1>Browser In</h1>
+    <form id="form">
+      <div><label>Input number: </label><input type="number" id="number" value="0"></div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+    <div id="result">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('#form').submit(function() {
+        event.preventDefault();
+        var $form = $(this);
+        $.ajax({
+          url: 'http://localhost:8000/cgi-bin/browserIn.py',
+          type: 'GET',
+          dataType: 'text',
+          data: {
+            number: $('#number').val(),
+            //text: $('#text').val()
+          },
+        })
+        .done(function() {
+            alart("done.");
+        });
+      });
+    });
+    </script>
+  </body>
+</html>

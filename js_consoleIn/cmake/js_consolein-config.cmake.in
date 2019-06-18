@@ -1,0 +1,54 @@
+# js_consoleIn CMake config file
+#
+# This file sets the following variables:
+# js_consoleIn_FOUND - Always TRUE.
+# js_consoleIn_INCLUDE_DIRS - Directories containing the js_consoleIn include files.
+# js_consoleIn_IDL_DIRS - Directories containing the js_consoleIn IDL files.
+# js_consoleIn_LIBRARIES - Libraries needed to use js_consoleIn.
+# js_consoleIn_DEFINITIONS - Compiler flags for js_consoleIn.
+# js_consoleIn_VERSION - The version of js_consoleIn found.
+# js_consoleIn_VERSION_MAJOR - The major version of js_consoleIn found.
+# js_consoleIn_VERSION_MINOR - The minor version of js_consoleIn found.
+# js_consoleIn_VERSION_REVISION - The revision version of js_consoleIn found.
+# js_consoleIn_VERSION_CANDIDATE - The candidate version of js_consoleIn found.
+
+message(STATUS "Found js_consoleIn-@PROJECT_VERSION@")
+set(js_consoleIn_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(js_consoleIn_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(js_consoleIn_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(js_consoleIn_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(js_consoleIn_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(js_consoleIn_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(js_consoleIn_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(js_consoleIn_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(js_consoleIn_VERSION @PROJECT_VERSION@)
+set(js_consoleIn_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(js_consoleIn_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(js_consoleIn_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(js_consoleIn_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
